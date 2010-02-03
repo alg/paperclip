@@ -15,14 +15,9 @@ class AttachmentTest < Test::Unit::TestCase
   end
 
   should "return the path based on custom parameter" do
-    @attachment = attachment :url => "/:class/:custom_param"
+    @attachment = attachment :url => "/:class/:custom_param", :tags => { :custom_param => lambda { |attachment, style_name| "sample" } }
     @model = @attachment.instance
     @model.avatar_file_name = "fake.jpg"
-    @model.class_eval <<-END
-      def #{@attachment.name}_custom_param
-        "sample"
-      end
-    END
     
     assert_equal "#{RAILS_ROOT}/public/fake_models/sample", @attachment.path
   end
