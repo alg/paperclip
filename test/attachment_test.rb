@@ -14,6 +14,19 @@ class AttachmentTest < Test::Unit::TestCase
     assert_equal "#{RAILS_ROOT}/public/fake_models/1234/fake", @attachment.path
   end
 
+  should "return the path based on custom parameter" do
+    @attachment = attachment :url => "/:class/:custom_param"
+    @model = @attachment.instance
+    @model.avatar_file_name = "fake.jpg"
+    @model.class_eval <<-END
+      def #{@attachment.name}_custom_param
+        "sample"
+      end
+    END
+    
+    assert_equal "#{RAILS_ROOT}/public/fake_models/sample", @attachment.path
+  end
+  
   context "Attachment default_options" do
     setup do
       rebuild_model

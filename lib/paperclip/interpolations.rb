@@ -33,6 +33,14 @@ module Paperclip
       end
     end
 
+    # Returns the value of a <attachment>_custom_param that can be anything
+    # based on the state or just an independent value. Useful when you
+    # want to refer to attachments of a model from another model and
+    # need to provide that source model ID.
+    def custom_param attachment, style_name
+      attachment.instance_read(:custom_param).to_s
+    end
+    
     # Returns the filename, the same way as ":basename.:extension" would.
     def filename attachment, style_name
       "#{basename(attachment, style_name)}.#{extension(attachment, style_name)}"
