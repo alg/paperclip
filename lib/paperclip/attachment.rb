@@ -181,6 +181,16 @@ module Paperclip
       instance_read(:content_type)
     end
     
+    # Returns the width of the attachment of a given style.
+    def width(style_name)
+      Paperclip::Geometry.from_file(path(style_name)).try(:width).to_i
+    end
+
+    # Returns the height of the attachment of a given style.
+    def height(style_name)
+      Paperclip::Geometry.from_file(path(style_name)).try(:height).to_i
+    end
+    
     # Returns the last modified time of the file as originally assigned, and 
     # lives in the <attachment>_updated_at attribute of the model.
     def updated_at

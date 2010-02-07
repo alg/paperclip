@@ -1,5 +1,8 @@
 =Paperclip
 
+This is not an official version. Please check the Deviations section below
+for the list of changes.
+
 Paperclip is intended as an easy file attachment library for ActiveRecord. The
 intent behind it was to keep setup as easy as possible and to treat files as
 much like other attributes as possible. This means they aren't saved to their
@@ -14,6 +17,23 @@ useful defaults.
 
 See the documentation for +has_attached_file+ in Paperclip::ClassMethods for
 more detailed options.
+
+==Deviations
+
+Here's the list of what's added in this fork:
+
+1. Added the ability to specify custom tags in the :url and :path options of the
+   has_attached_file definition, like that (note that):
+
+    has_attached_file :image, :url => "/assets/photos/:project_id/:style.jpg",
+      :tags => { :project_id => lambda { |attachment, style| attachment.instance.project.id } }
+
+2. Added easy access to attachment geometry:
+
+    has_attached_file :image, :styles => { :medium => ..., ... }
+
+    <%= model.image.width(:medium) %>
+
 
 ==Quick Start
 

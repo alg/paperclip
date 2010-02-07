@@ -241,6 +241,22 @@ class AttachmentTest < Test::Unit::TestCase
     end
   end
 
+  context "An image attachment" do
+    setup do
+      @instance = Dummy.new
+      @instance.stubs(:id).returns(123)
+      @instance.stubs(:avatar_file_name).returns("5k.png")
+
+      path = File.join(File.dirname(__FILE__), "fixtures", "5k.png")
+      @attachment = Paperclip::Attachment.new(:avatar, @instance, :path => path)
+    end
+    
+    should "return width and height" do
+      assert_equal 434, @attachment.width(:original)
+      assert_equal 66,  @attachment.height(:original)
+    end
+  end
+  
   geometry_specs = [ 
     [ lambda{|z| "50x50#" }, :png ],
     lambda{|z| "50x50#" },
