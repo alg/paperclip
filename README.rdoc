@@ -1,7 +1,7 @@
 =Paperclip
 
-_This is not an official version. Please check the Deviations section below
-for the list of changes._
+This is not an official version. Please check the Deviations section below
+for the list of changes.
 
 Paperclip is intended as an easy file attachment library for ActiveRecord. The
 intent behind it was to keep setup as easy as possible and to treat files as
