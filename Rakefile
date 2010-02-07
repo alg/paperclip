@@ -42,7 +42,7 @@ task :clean do |t|
   FileUtils.rm_rf "pkg"
   FileUtils.rm "test/debug.log" rescue nil
   FileUtils.rm "test/paperclip.db" rescue nil
-  Dir.glob("paperclip-*.gem").each{|f| FileUtils.rm f }
+  Dir.glob("alg_paperclip-*.gem").each{|f| FileUtils.rm f }
 end
 
 include_file_globs = ["README*",
@@ -62,7 +62,7 @@ exclude_file_globs = ["test/s3.yml",
 spec = Gem::Specification.new do |s| 
   s.name              = "alg-paperclip"
   s.version           = Paperclip::VERSION
-  s.author            = "Jon Yurek"
+  s.authors           = ["Jon Yurek", "Aleksey Gureiev"]
   s.email             = "jyurek@thoughtbot.com"
   s.homepage          = "http://www.thoughtbot.com/projects/paperclip"
   s.platform          = Gem::Platform::RUBY
