@@ -33,6 +33,7 @@ Here's the list of what's added in this fork:
     has_attached_file :image, :styles => { :medium => ..., ... }
 
     <%= model.image.width(:medium) %>
+    <%= model.image.height(:medium) %>
 
 
 ==Quick Start
